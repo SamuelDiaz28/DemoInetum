@@ -5,12 +5,86 @@
     android:layout_height="match_parent"
     tools:context=".OnboardingScreen.ObverseIdentifyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Obverse Identify Fragment"
-        android:layout_gravity="center"
-        android:textSize="20sp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgRegistry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="@integer/material_motion_duration_long_1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_undraw_id"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgRegistry"
+                android:layout_marginTop="15dp"
+                android:text="@string/fragObverseIdTitle"
+                android:textColor="@color/primaryText"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="@string/frafObverseIdMessage"
+                android:textColor="@color/contrast"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+
+                android:text="@string/frafObverseIdMessage2"
+                android:textColor="@color/thirdText"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="@string/frafObverseIdMessage3"
+                android:textColor="@color/thirdText"
+                android:textSize="15sp"
+                android:textStyle="italic"/>
+
+            <Button
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnSend"
+                android:textColor="@color/white"
+                android:text="Escanear"
+                android:textStyle="bold"
+                android:background="@drawable/custom_button"/>
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

@@ -14,4 +14,5 @@
 
     <color name="primaryText">#212121</color>
     <color name="secondaryText">#BDBDBD</color>
+    <color name="thirdText">#787878</color>
 </resources>

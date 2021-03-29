@@ -11,4 +11,8 @@
     <string name="verifyBtn">Verificar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragObverseIdTitle">Anverso ID</string>
+    <string name="frafObverseIdMessage">Escanea la parte frontal del ID </string>
+    <string name="frafObverseIdMessage2">\n 1.- Coloca el documento en una superficie plana \n  \n 2.- Asegura que el documento tenga buena iluminacion \n \n 3.- Asegura que la imagen previa este enfocada y clara para escanear \n</string>
+    <string name="frafObverseIdMessage3">Presiona el boton debajo para escanear cuando este listo </string>
 </resources>
