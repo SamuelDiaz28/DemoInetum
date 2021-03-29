@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "747461873579",
+    "project_id": "verification-otp-766ee",
+    "storage_bucket": "verification-otp-766ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747461873579:android:051d25dc3cd29d72b28cee",
+        "android_client_info": {
+          "package_name": "mx.ine.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747461873579-u139v7qt89sfri6vi23j4e2001lm8ph6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe1vol-i24ATXg64OM_RaUJZYB_pHAX5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747461873579-u139v7qt89sfri6vi23j4e2001lm8ph6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

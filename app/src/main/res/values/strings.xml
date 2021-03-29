@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Inetum</string>
+    <string name="registryTitle">Registro</string>
+    <string name="registryTxtMessage">Se enviara una contraseña al numero de telefono</string>
+    <string name="registryEdtHelper">*Obligatorio</string>
+    <string name="registryBtnSend">Enviar</string>
+    <string name="verifyTitle">Verificacion</string>
+    <string name="verifyTxtMessage">Digite el PIN recibido</string>
+    <string name="verifyTxtMessage2">¿No recibio el PIN?</string>
+    <string name="verifyTxtResendPIN">REENVIAR PIN</string>
+    <string name="verifyBtn">Verificar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
