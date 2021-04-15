@@ -14,6 +14,7 @@
         android:id="@+id/linTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -60,6 +61,7 @@
             android:layout_below="@+id/linTop">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -78,6 +80,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_password"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,21 +97,77 @@
                     android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:startIconDrawable="@drawable/ic_phone"
-                app:helperText="@string/registryEdtHelper"
-                android:hint="Telefono">
+                android:orientation="horizontal">
 
-                <EditText
+
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:id="@+id/text_input_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/edtNumberPhone"
-                    android:inputType="phone"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:startIconDrawable="@drawable/ic_phone"
+                    app:helperText="@string/registryEdtHelper"
+                    android:hint="Telefono"
+                    android:layout_weight="1"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/edtNumberPhone"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Spinner
+                    android:gravity="center"
+                    android:id="@+id/spnCountries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+            
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:gravity="center">
+                
+                <CheckBox
+                    android:id="@+id/checkEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:text="@string/checkRegistry1"
+                    android:button="@drawable/custom_check_box"
+                    android:background="@android:color/transparent"/>
+
+                <CheckBox
+                    android:visibility="gone"
+                    android:id="@+id/checkMSJ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:text="@string/checkRegistry2"
+                    android:button="@drawable/custom_check_box"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
 
 
             <FrameLayout
@@ -133,7 +192,6 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:visibility="gone"/>
-
             </FrameLayout>
 
 

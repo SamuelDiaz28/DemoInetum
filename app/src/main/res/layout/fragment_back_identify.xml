@@ -27,14 +27,14 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="@integer/material_motion_duration_long_1"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_undraw_id"/>
+                android:src="@drawable/ic_undraw_back_id"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgRegistry"
-                android:layout_marginTop="15dp"
-                android:text="@string/fragObverseIdTitle"
+                android:layout_marginTop="40dp"
+                android:text="@string/fragBackIdTitle"
                 android:textColor="@color/primaryText"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -46,7 +46,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="@string/frafObverseIdMessage"
+                android:text="@string/fragBackIdMessage"
                 android:textColor="@color/contrast"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -58,7 +58,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
 
-                android:text="@string/frafObverseIdMessage2"
+                android:text="@string/fragBackIdMessage2"
                 android:textColor="@color/thirdText"
                 android:textSize="18sp" />
 
@@ -69,7 +69,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="@string/frafObverseIdMessage3"
+                android:text="@string/fragBackIdMessage3"
                 android:textColor="@color/thirdText"
                 android:textSize="15sp"
                 android:textStyle="italic"/>

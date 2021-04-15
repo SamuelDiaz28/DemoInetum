@@ -5,12 +5,74 @@
     android:layout_height="match_parent"
     tools:context=".OnboardingScreen.InfoCameraFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Info Camera Fragment"
-        android:layout_gravity="center"
-        android:textSize="20sp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgRegistry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="@integer/material_motion_duration_long_1"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_undraw_selfie"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgRegistry"
+                android:layout_marginTop="10dp"
+                android:text="@string/fragInfCameraTitle"
+                android:textColor="@color/primaryText"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="@string/fragInfCameraMessage"
+                android:textColor="@color/contrast"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="@string/fragInfCameraMessage2"
+                android:textColor="@color/thirdText"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="@string/fragInfCameraMessage3"
+                android:textColor="@color/thirdText"
+                android:textSize="15sp"
+                android:textStyle="italic"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
