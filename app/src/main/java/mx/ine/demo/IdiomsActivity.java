@@ -70,7 +70,7 @@ public class IdiomsActivity extends AppCompatActivity implements View.OnClickLis
 
     public void skipLogin(){
         if (sharedPreferencesHelper.isUserLogged()){
-            Intent intent = new Intent(IdiomsActivity.this, MainActivity.class);
+            Intent intent = new Intent(IdiomsActivity.this, DashboardActivity.class);
             startActivity(intent);
             finish();
         }

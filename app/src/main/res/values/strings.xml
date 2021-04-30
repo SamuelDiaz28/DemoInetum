@@ -29,4 +29,7 @@
     <string name="checkRegistry2">SMS</string>
     <string name="idiomsLayout_title">Select Language</string>
 
+    <string name="checkDashboard1">Pasaporte</string>
+    <string name="checkDashboard2">ID</string>
+
 </resources>

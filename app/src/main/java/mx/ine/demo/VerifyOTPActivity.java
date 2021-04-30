@@ -297,7 +297,7 @@ public class VerifyOTPActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void goToMain() {
-        Intent i = new Intent(VerifyOTPActivity.this, MainActivity.class);
+        Intent i = new Intent(VerifyOTPActivity.this, DashboardActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         finish();
