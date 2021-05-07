@@ -24,4 +24,8 @@
 
     <color name="colorEndBackground">#50FFFFFF</color>
     <color name="colorLightText">#ECECEC</color>
+
+    <color name="colorSuccess">#2a9d8f</color>
+    <color name="colorWarning">#e9c46a</color>
+    <color name="colorError">#e76f51</color>
 </resources>

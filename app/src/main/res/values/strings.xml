@@ -1,28 +1,25 @@
 <resources>
     <string name="app_name">Inetum</string>
     <string name="registryTitle">Registro</string>
-    <string name="registryTxtMessage">Se enviará un código a la opción seleccionada</string>
+    <string name="registryTxtMessage">Se le enviará un código a la opción seleccionada</string>
     <string name="registryEdtHelper">*Obligatorio</string>
     <string name="registryBtnSend">Enviar</string>
     <string name="verifyTitle">Verificacion</string>
     <string name="verifyTxtMessage">Digite el PIN recibido</string>
-    <string name="verifyTxtMessage2">¿No recibio el PIN?</string>
+    <string name="verifyTxtMessage2">¿No ha recibio el PIN?</string>
     <string name="verifyTxtResendPIN">REENVIAR PIN</string>
     <string name="verifyBtn">Verificar</string>
 
     <string name="fragObverseIdTitle">Anverso ID</string>
-    <string name="frafObverseIdMessage">Escanea la parte frontal del ID </string>
-    <string name="frafObverseIdMessage2">\n 1.- Coloca el documento en una superficie plana \n  \n 2.- Asegura que el documento tenga buena iluminacion \n \n 3.- Asegura que la imagen previa este enfocada y clara para escanear \n</string>
-    <string name="frafObverseIdMessage3">Presiona el boton debajo para escanear cuando este listo </string>
+    <string name="frafObverseIdMessage2">\n 1.- Coloque el documento en una superficie plana \n  \n 2.- Asegúrese que el documento tenga buena iluminacion \n \n 3.- Asegúrese que la imagen previa este enfocada y clara para escanear \n</string>
+    <string name="frafObverseIdMessage3">Presione el botón debajo de su pantalla de escaneo cuando esté listo </string>
 
     <string name="fragBackIdTitle">Reverso ID</string>
-    <string name="fragBackIdMessage">Escanea la parte trasera del ID </string>
-    <string name="fragBackIdMessage2">\n 1.- Coloca el documento en una superficie plana \n  \n 2.- Asegura que el documento tenga buena iluminacion \n \n 3.- Asegura que la imagen previa este enfocada y clara para escanear \n</string>
-    <string name="fragBackIdMessage3">Presiona el boton debajo para escanear cuando este listo </string>
+    <string name="fragBackIdMessage2">\n 1.- Coloque el documento en una superficie plana \n  \n 2.- Asegúrese que el documento cuente con buena iluminación \n \n 3.- Asegúrese que la imagen previa este enfocada y clara para el escaneo \n</string>
+    <string name="fragBackIdMessage3">Presione el botón debajo de su pantalla de escaneo cuando esté listo </string>
 
     <string name="fragInfCameraTitle">Prueba de vida</string>
-    <string name="fragInfCameraMessage">Toma una selfie</string>
-    <string name="fragInfCameraMessage2">\n 1.- Coloca tu rostro frente a la camara \n  \n 2.- Intente que el rostro se la mas visible posible si es necesario quitar anteojos \n \n 3.- Enfoque la camara y asegure que tenga buena iluminacion \n \n 4.- El proceso puede demorar hasta un minuto, favor de no interrumpir el preoceso \n</string>
+    <string name="fragInfCameraMessage2">\n 1.- Coloque su rostro frente a la camara \n  \n 2.- Intente que el rostro se lo más visible posible si es necesario quítese los anteojos \n \n 3.- Enfoque la camara y asegure que tenga buena iluminación \n \n 4.- El proceso puede demorar hasta un minuto, favor de no interrumpir el proceso \n</string>
     <string name="fragInfCameraMessage3">Presione "SIGUIENTE" cuando este listo </string>
 
     <string name="checkRegistry1">Correo</string>
@@ -31,5 +28,12 @@
 
     <string name="checkDashboard1">Pasaporte</string>
     <string name="checkDashboard2">ID</string>
+    
+    <string name="dialog_success_title">Exito</string>
+    <string name="dialog_warning_title">Advertencia</string>
+    <string name="dialog_error_title">Error</string>
+
+    <string name="dialog_acept_button">Aceptar</string>
+
 
 </resources>

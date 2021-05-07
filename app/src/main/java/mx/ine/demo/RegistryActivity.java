@@ -27,7 +27,10 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -141,6 +144,12 @@ public class RegistryActivity extends AppCompatActivity implements View.OnClickL
         btnSend.setVisibility(View.INVISIBLE);
 
         String dataPrepared = null;
+
+        DateFormat df = new SimpleDateFormat("yyyy/MM/d, HH:mm:ss");
+        String date = df.format(Calendar.getInstance().getTime());
+
+        Log.i(">>DATE<<", date);
+
 
         try {
             JSONObject data = new JSONObject();

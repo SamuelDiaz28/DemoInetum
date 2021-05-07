@@ -2,6 +2,7 @@ package mx.ine.demo.Util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 
 import androidx.annotation.NonNull;
 
@@ -66,6 +67,60 @@ public class SharedPreferencesHelper {
 
     public int getUserLoggedId() {
         return sharedPreferences.getInt("idUser",-1);
+    }
+
+
+
+    public void putDateBirth(String date) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("DateBirth", date);
+        editor.apply();
+    }
+
+    public void removeDateBirth() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("DateBirth");
+        editor.apply();
+    }
+
+    public String getDateBirth() {
+        return sharedPreferences.getString("DateBirth", null);
+    }
+
+
+    public void putExpiryYear(String year) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("ExpiryYear",year);
+        editor.apply();
+    }
+
+    public void removeExpiryYear() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("ExpiryYear");
+        editor.apply();
+    }
+
+    public String getExpiryYear() {
+        return sharedPreferences.getString("ExpiryYear", null);
+    }
+
+
+
+
+    public void putImagePortrait(String imgPortrait) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("ImagePortrait", imgPortrait);
+        editor.apply();
+    }
+
+    public void removeImgPortrait() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("imgPortrait");
+        editor.apply();
+    }
+
+    public String getImgPortrait() {
+        return sharedPreferences.getString("imgPortrait", null);
     }
 
 

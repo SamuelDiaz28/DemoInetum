@@ -12,7 +12,7 @@
         android:scrollbars="none">
 
         <LinearLayout
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -23,7 +23,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="@integer/material_motion_duration_long_1"
                 android:adjustViewBounds="true"
@@ -39,17 +38,6 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:gravity="center"
-                android:text="@string/frafObverseIdMessage"
-                android:textColor="@color/contrast"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -74,17 +62,31 @@
                 android:textSize="15sp"
                 android:textStyle="italic"/>
 
-            <Button
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
+
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnSend"
-                android:textColor="@color/white"
-                android:text="Escanear"
-                android:textStyle="bold"
-                android:background="@drawable/custom_button"/>
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnScan"
+                    android:textColor="@color/white"
+                    android:text="Escanear"
+                    android:textStyle="bold"
+                    android:background="@drawable/custom_button"/>
+
+                <ProgressBar
+                    android:id="@+id/prgressBarID"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"/>
+            </FrameLayout>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

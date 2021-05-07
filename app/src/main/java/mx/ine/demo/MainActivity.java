@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout layoutOnboardingIndicators;
 
     private OnboardingPagerAdapter pagerAdapter;
-    private MaterialButton btnNext;
+    public MaterialButton btnNext;
     private SharedPreferencesHelper sharedPreferencesHelper;
 
     @Override
