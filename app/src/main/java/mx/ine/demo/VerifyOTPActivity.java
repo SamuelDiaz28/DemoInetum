@@ -26,6 +26,10 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import mx.ine.demo.Requests.Model.UsuarioService;
 import mx.ine.demo.Requests.RetrofitRequest;
 import mx.ine.demo.Util.SharedPreferencesHelper;
@@ -230,11 +234,15 @@ public class VerifyOTPActivity extends AppCompatActivity implements View.OnClick
 
     private void sendCodeVerification(int code) {
 
+        DateFormat df = new SimpleDateFormat("yyyy/MM/d, HH:mm:ss");
+        String date = df.format(Calendar.getInstance().getTime());
+
         String data = null;
         try {
             JSONObject dataJS = new JSONObject();
             dataJS.put("Correo", emailUser);
             dataJS.put("Code", code);
+            dataJS.put("Femov", date);
 
             data = dataJS.toString();
         }catch (JSONException e){

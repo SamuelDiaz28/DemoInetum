@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -19,6 +20,7 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -29,6 +31,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Size;
@@ -41,16 +44,34 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import mx.ine.demo.MainActivity;
 import mx.ine.demo.R;
+import mx.ine.demo.Requests.Model.UsuarioService;
+import mx.ine.demo.Requests.RetrofitRequest;
+import mx.ine.demo.Util.CommonMethods;
+import mx.ine.demo.Util.SharedPreferencesHelper;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,7 +86,12 @@ public class CameraFragment extends Fragment {
     private TextureView textureView;
     private ImageButton btnCapture;
 
+    private MaterialButton btnNext;
+
     private Bitmap bitmap;
+
+    private CommonMethods commonMethods = new CommonMethods();
+    private SharedPreferencesHelper preferencesHelper;
 
 
     //Check state orientation of output image
@@ -124,6 +150,7 @@ public class CameraFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_camera, container, false);
 
+        preferencesHelper = new SharedPreferencesHelper(getActivity().getApplicationContext());
 
         textureView = root.findViewById(R.id.textureView);
         assert textureView != null;
@@ -137,6 +164,9 @@ public class CameraFragment extends Fragment {
                 takePicture();
             }
         });
+
+        btnNext = (MaterialButton) getActivity().findViewById(R.id.btnOnboardingAction);
+        btnNext.setEnabled(false);
 
         return root;
     }
@@ -197,7 +227,21 @@ public class CameraFragment extends Fragment {
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader imageReader) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Imagen Capturada", Toast.LENGTH_SHORT).show();
+                    Image image = null;
+                    try {
+                        image = reader.acquireLatestImage();
+                        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                        byte[] bytes = new byte[buffer.capacity()];
+                        buffer.get(bytes);
+
+                        bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
+                        new SendVerifyDocument().execute();
+                    } finally {
+                        {
+                            if (image != null)
+                                image.close();
+                        }
+                    }
                 }
             };
 
@@ -207,9 +251,6 @@ public class CameraFragment extends Fragment {
                 public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
 
-
-                    //new SendLiveNess().execute();
-                    //sendLiveNess();
                     createCameraPreview();
                 }
             };
@@ -369,6 +410,7 @@ public class CameraFragment extends Fragment {
     @Override
     public void onPause() {
         stopBackgroundThread();
+        cameraDevice.close();
         super.onPause();
     }
 
@@ -389,5 +431,129 @@ public class CameraFragment extends Fragment {
         mBackgroundHandler = new Handler(mBackgroundThread.getLooper());
     }
 
+    private class SendVerifyDocument extends AsyncTask<Bitmap, Void, String> {
+        @Override
+        protected String doInBackground(Bitmap... bitmaps) {
 
+            Log.i(">>>Entro<<<", ">>>SendLivness<<<");
+
+            //Covert Image to Base 64
+            Matrix matrix = new Matrix();
+            matrix.postRotate(270);
+
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+            Bitmap bitmapSend = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            bitmapSend.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            //bitmap.compress(Bitmap.CompressFormat.PNG, 50, stream);
+            byte[] byteFormat = stream.toByteArray();
+            String encodedImage = Base64.encodeToString(byteFormat, Base64.DEFAULT);
+
+
+
+            // Prepare JSON to send
+            String data = null;
+            try {
+                JSONObject document = new JSONObject();
+                JSONObject facialImage1 = new JSONObject();
+                JSONObject facialImage2 = new JSONObject();
+
+                document.put("Description", "Identificacion oficial");
+                document.put("Type", "2");
+                document.put("CapMethod", 2);
+                document.put("RawData", null);
+                document.put("Data", null);
+
+                facialImage1.put("Description", "User Photo Cropped from Document");
+                facialImage1.put("DataType", 1);
+                facialImage1.put("Data", preferencesHelper.getImgPortrait());
+                document.put("FacialImage", facialImage1);
+
+
+                facialImage2.put("Description", "User Selfie");
+                facialImage2.put("DataType", 1);
+                facialImage2.put("Data", encodedImage);
+
+
+                JSONObject datos = new JSONObject();
+                datos.put("Document", document);
+                datos.put("FacialImage", facialImage2);
+
+                data = datos.toString();
+
+
+            } catch (JSONException e) {
+                Log.e(TAG, e.getMessage());
+            }
+
+            UsuarioService service = RetrofitRequest.create(UsuarioService.class);
+            RequestBody body = RetrofitRequest.createBody(data);
+            Call<String> response = service.sendVerifyDocument(body);
+
+            response.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+
+                    if (response.code() != 200) {
+                        Toast.makeText(getActivity(), "Ocurrió un error de envio \n" + response.message(), Toast.LENGTH_LONG).show();
+                        Log.i(">>>RESPONSE<<<", " Entro code: " + String.valueOf(response.code()));
+                        return;
+                    }
+
+                    try {
+                        int matchScore = 0;
+
+                        JSONObject jres = new JSONObject(response.body());
+                        Boolean res = jres.getBoolean("Matched");
+                        if (res) {
+                            matchScore = jres.getInt("MatchScore");
+                        }
+
+                        boolean isLive = jres.getJSONObject("LivenessDetectionResult").getBoolean("IsLive");
+                        setResults(res, isLive, matchScore);
+
+                    } catch (JSONException e) {
+                        Log.e(TAG, "Error al convertir en json los datos\n" + e.getMessage());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Log.i(">>>OnFailure<<<<", t.getMessage());
+                    //Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+
+                    if (t instanceof SocketTimeoutException) {
+                        // "Connection Timeout";
+                        Log.i(">>>>OnFailure<<<<", "Connection Timeout");
+                    } else if (t instanceof IOException) {
+                        // "Timeout";
+                        Log.i(">>>OnFailure<<<<", t.getMessage());
+                    } else {
+                        //Call was cancelled by user
+                        if (call.isCanceled()) {
+                            System.out.println("Call was cancelled forcefully");
+                        } else {
+                            //Generic error handling
+                            System.out.println("Network Error :: " + t.getLocalizedMessage());
+                        }
+                    }
+                }
+
+            });
+            return null;
+        }
+
+        private void setResults(boolean isLive, boolean matched, int score) {
+
+            if (matched && isLive) {
+                cameraDevice.close();
+                btnNext.setEnabled(true);
+                String msg = "Autenticacion conrrecta: " + String.valueOf(score) +"%";
+                commonMethods.showSuccessDialog(msg, getActivity());
+            } else
+                takePicture();
+
+        }
+    }
 }

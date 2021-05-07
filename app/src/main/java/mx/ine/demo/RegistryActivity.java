@@ -156,6 +156,7 @@ public class RegistryActivity extends AppCompatActivity implements View.OnClickL
             data.put("Telefono", phoneCode + edtPhoneNumber.getText().toString().trim());
             data.put("Correo", edtEmail.getText().toString().trim());
             data.put("Password", edtPassword.getText().toString().trim());
+            data.put("Femov", date);
 
             dataPrepared = data.toString();
 

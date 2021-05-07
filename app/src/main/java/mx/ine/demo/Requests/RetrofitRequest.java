@@ -1,9 +1,12 @@
 package mx.ine.demo.Requests;
 
+import android.util.Base64;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import mx.ine.demo.Util.Util;
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -26,10 +29,19 @@ public class RetrofitRequest {
             public Response intercept(Chain chain) throws IOException {
                 Request request  = chain.request();
                 Request.Builder builder = request.newBuilder();
-                builder.addHeader("Content-type", "application/json");
-                if(request.header(Util.AUTH_KEY) != null) {
-                    builder.addHeader("Authorization", "Bearer " + Util.TOKEN);
-                    builder.removeHeader(Util.AUTH_KEY);
+                builder.cacheControl(new CacheControl.Builder().noCache().build());
+                String head = request.headers().name(0);
+                if (!head.equals("NOAUTH")){
+                    if(head.equals("@IPSIDY")) {
+                        builder.addHeader("Authorization", "Basic " + Base64.encodeToString(Util.BASE_IPSYDY.getBytes(), Base64.NO_WRAP));
+                        builder.addHeader("Content-type", "application/json");
+                    }else if (head.equals("@IECISA")){
+                        builder.addHeader("Authorization", "Basic " + Base64.encodeToString(Util.BASE_IECISA.getBytes(), Base64.NO_WRAP));
+                        builder.removeHeader("@IECISA");
+                    }else if (head.equals("@AUTH")) {
+                        builder.addHeader("Authorization", "Bearer " + Util.TOKEN);
+                        builder.removeHeader(Util.AUTH_KEY);
+                    }
                 }
                 return chain.proceed(builder.build());
             }

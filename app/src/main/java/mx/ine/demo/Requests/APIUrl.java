@@ -11,4 +11,6 @@ public class APIUrl {
     public static final String REGISTRO = "app/GetCodeValidation";
     public static final String VALIDATION = "app/ValidateAuthenticationCode";
 
+    public static final String VERIFY_DOCUMENT = "https://idlok.ipsidy.net/IDCompleteBackendEngine/Default/AdministrationServiceRest/customer/operations/verifyDocument";
+
 }

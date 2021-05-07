@@ -107,9 +107,9 @@ public class SharedPreferencesHelper {
 
 
 
-    public void putImagePortrait(String imgPortrait) {
+    public void putImgPortrait(String imgPortrait) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("ImagePortrait", imgPortrait);
+        editor.putString("imgPortrait", imgPortrait);
         editor.apply();
     }
 

@@ -174,10 +174,10 @@ public class ObverseIdentifyFragment extends Fragment implements View.OnClickLis
             issue_year = commonMethods.convertDate(results.getTextFieldValueByType(eVisualFieldType.FT_DATE_OF_ISSUE), 2);
             registry_year = commonMethods.convertDate(results.getTextFieldValueByType(eVisualFieldType.FT_DATE_OF_REGISTRATION), 2);
 
-            documentImage = results.getGraphicFieldImageByType(eGraphicFieldType.GF_DOCUMENT_IMAGE);
+
             // Get portrait image
             portrait = results.getGraphicFieldImageByType(eGraphicFieldType.GF_PORTRAIT);
-
+            documentImage = results.getGraphicFieldImageByType(eGraphicFieldType.GF_DOCUMENT_IMAGE);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -229,7 +229,10 @@ public class ObverseIdentifyFragment extends Fragment implements View.OnClickLis
                 userInfo.setIssue_year(issue_year);
                 userInfo.setImg_document(commonMethods.getEncoded64(documentImage));
 
-                preferencesHelper.putImagePortrait(commonMethods.getEncoded64(portrait));
+                preferencesHelper.putImgPortrait(commonMethods.getEncoded64(portrait));
+                preferencesHelper.putDateBirth(birth_date);
+                preferencesHelper.putExpiryYear(validity_date);
+
                 AppDatabase.getInstance(getActivity()).userInfoDao().insert(userInfo);
 
 
